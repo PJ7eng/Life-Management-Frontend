@@ -1,12 +1,5 @@
 # React + Vite
 
-# test account:
-test account: 123
-test password: 123
-
-test account: brian
-test password: brian
-
 # dependency：
 
 1. npm install react-router-dom
