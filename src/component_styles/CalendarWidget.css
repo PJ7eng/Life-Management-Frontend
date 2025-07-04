@@ -1,0 +1,23 @@
+.calendar-widget {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 覆蓋 MUI 的一些默認樣式 */
+.calendar-widget .MuiDateCalendar-root {
+  width: 100%;
+  max-height: none;
+}
+
+.calendar-widget .MuiPickersCalendarHeader-root {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 8px;
+}
+
+.calendar-widget .MuiDayCalendar-weekContainer {
+  justify-content: space-around;
+} 

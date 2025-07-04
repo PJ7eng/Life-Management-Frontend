@@ -1,0 +1,22 @@
+.main-content {
+  height: calc(100vh - 158px);
+  width: calc(100vw - 348px);
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 24px;
+  border-radius: 16px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.main-page {
+  height: 100%;
+}
+
+.main-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2rem;
+}

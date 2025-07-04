@@ -1,0 +1,131 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.top-sections {
+  display: flex;
+  gap: 24px;
+  height: 50%;
+}
+
+.small-section {
+  flex: 1;
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large-section {
+  background-color: white;
+  border-radius: 16px;
+  padding-top: 24px;
+  padding-left: 48px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 50%; 
+}
+
+.large-section-item-area {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  overflow-x: auto; /* 水平滚动 */
+  white-space: nowrap; /* 防止换行 */
+  padding: 10px 0; /* 留出滚动空间 */
+}
+
+.large-section-item {
+  margin-top: 15px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 220px;
+  min-width: 250px;
+  flex-direction: column;
+  border-top: 40px solid #2563eb;
+  padding: 10px;
+}
+
+.large-section-item h1{
+  font-family: 'Inter';
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.large-section-item p{
+  font-family: 'Inter';
+  font-size: 0.85rem;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+.section-title {
+  white-space: nowrap; /* 禁止文字換行 */
+  overflow: hidden;    /* 隱藏超出部分 */
+  font-family: 'Inter';
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+} 
+
+/* Home.css 新增样式 */
+
+/* 待办事项计数 */
+.todo-count {
+  margin-left: 12px;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #64748b;
+  background-color: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* 无待办事项消息 */
+.no-todos-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/* 待办事项项样式优化 */
+.large-section-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.large-section-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.large-section-item h1 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #1e293b;
+  font-size: 1.2rem;
+}
+
+.large-section-item p {
+  margin: 4px 0;
+  color: #475569;
+  font-size: 0.95rem;
+}

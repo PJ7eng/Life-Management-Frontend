@@ -1,0 +1,263 @@
+/* .sx-react-calendar-wrapper {
+    width: 100%;
+    height: 100%;
+} */
+/* src/component_styles/Task.css */
+/* 日历容器 */
+/* 添加加载状态样式
+
+.sx-react-calendar-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* 自定義日曆主題顏色 */
+/* 日历容器 */
+.sx-react-calendar-wrapper {
+  width: 100%;
+  height: calc(100vh - 200px);
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* 添加事件按钮 */
+.add-event-button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.add-event-button:hover {
+  background-color: #1d4ed8;
+}
+
+/* 點擊事件後顯示事件信息的模態框樣式 */
+.event-modal{
+  height: 200px;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.event-modal-item{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.event-modal h1{
+  font-family: "Inter";
+  font-weight: bold;
+  color: black;
+  font-size: x-large;
+  margin-bottom: 10px;
+}
+.event-modal h2{
+  font-family: "Inter";
+  color: black;
+  font-size: medium;
+}
+.event-modal-delete-button{
+  background-color: #2563eb !important;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  width: fit-content;
+}
+.event-modal-delete-button:hover{
+   background-color: #1d4ed8 !important;
+}
+
+/* 添加事件的模态框样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.modal h2 {
+  margin: 0 0 20px;
+  color: #2563eb;
+  text-align: center;
+  font-family: Inter;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.modal label {
+  font-weight: 500;
+  color: #334155;
+}
+.modal input,
+.modal textarea {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+.modal input:focus,
+.modal textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+.modal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-buttons button:first-child {
+  background-color: #2563eb;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #1d4ed8;
+}
+
+.modal-buttons button:last-child {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #e2e8f0;
+}
+
+/* 自定义日历主题 */
+.sx-calendar {
+  --sx-color-primary: #2563eb;
+  --sx-color-on-primary: #ffffff;
+  --sx-color-surface: #ffffff;
+  --sx-color-on-surface: #1f2937;
+  --sx-font-family: 'Inter', sans-serif;
+}
+
+.sx-event {
+  background-color: var(--sx-color-primary) !important;
+  color: var(--sx-color-on-primary) !important;
+  border-left: 4px solid #1d4ed8 !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+}
+
+.sx-date-picker__day--selected {
+  background-color: var(--sx-color-primary) !important;
+  color: var(--sx-color-on-primary) !important;
+}
+
+.sx-date-picker__day--today {
+  border: 1px solid var(--sx-color-primary) !important;
+}
+
+.sx-calendar__header {
+  background-color: #f8fafc !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.sx-calendar__view-toggle {
+  background-color: #f1f5f9 !important;
+  border-radius: 8px !important;
+}
+
+.sx-calendar__view-toggle-button--active {
+  background-color: white !important;
+  color: var(--sx-color-primary) !important;
+  font-weight: 500 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 添加日历样式覆盖 */
+.schedule-x-calendar {
+  height: 80vh !important;
+  margin-top: 20px;
+}
+
+/* 加载状态样式 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
