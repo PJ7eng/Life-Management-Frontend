@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios'; // 引入 axios
 import './App.css';
 import Dashboard from './component/dashboard';
-import Login from './login_signup_component/Login';
+import Login from './login_signup_component/login';
 import Register from './login_signup_component/register';
 
 function App() {
