@@ -31,10 +31,11 @@ function Login({ setIsLoggedIn }) {
     navigate('/dashboard');
   } catch (err) {
     if (err.response && err.response.status === 401) {
-      setError('登錄失敗，請檢查賬號或密碼');
+      setError("登錄失敗，請檢查賬號或密碼是否正確");
+      console.error("登錄失敗，請檢查賬號或密碼", err);
     } else {
-      setError('登錄失敗，請稍後再試');
-      console.error(err);
+      setError("登錄失敗，請稍後再試");
+      console.error("登錄失敗，請稍後再試", err);
     }
   }
 };
@@ -51,6 +52,7 @@ function Login({ setIsLoggedIn }) {
           <img src={passwordIcon} alt="password Icon"/>
           <input type="password" placeholder='請輸入密碼' onChange={(e) => setPassword(e.target.value)}/>
         </div>
+        {error && <div className = "error-message">{error}</div>}
         <div className="submit-container">
           <div className="submit" onClick={handleLogin}>登錄</div>
           <div className='submit' onClick={() => navigate('/register')}>註冊</div>

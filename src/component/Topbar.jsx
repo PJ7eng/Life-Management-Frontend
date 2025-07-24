@@ -31,6 +31,31 @@ function Topbar({onLogout}) {
     };
 
     fetchUserData();
+
+    //事件監聽，當在其他地方修改用戶名時更新
+    const handleStorageChange = () => {
+      fetchUserData();
+    };
+
+    // 监听用户数据更新事件
+    const handleUserDataUpdated = (event) => {
+      // 验证接收到的数据是否完整
+      const newUserData = event.detail.userData;
+      if (newUserData && typeof newUserData === 'object' && newUserData.id) {
+        setUserData(newUserData);
+        setError(''); // 清除错误状态
+        setLoading(false); // 确保不再显示加载状态
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('userDataUpdated', handleUserDataUpdated);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener('userDataUpdated', handleUserDataUpdated);
+    };
+
   }, [onLogout]);
 
   const handleAvatarError = (e) => {
@@ -87,12 +112,12 @@ function Topbar({onLogout}) {
     <div className='topbar'>
       <div className='user-profile'>
         <img 
-          src={userData.avatar || avatar01} 
+          src={(userData && userData.avatar) || avatar01} 
           alt="User Avatar" 
           className='avatar'
           onError={handleAvatarError}
         />
-        <span className='username'>{userData.username || '未知用户'}</span>
+        <span className='username'>{(userData && userData.username) || '未知用户'}</span>
       </div>
       
       <div className='topbar-right'>

@@ -1,49 +1,72 @@
 import '../component_styles/MainContent.css';
 import '../component_styles/Home.css';
-
 import CalendarWidget from './CalendarWidget';
 import IncomeExpenseRatioDashboard from './IncomeExpenseRatioDashboard';
-import api from '../api';
-
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
 
 function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [todoList, setTodoList] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // 修改fetchTasksForDate函数
-  const fetchTasksForDate = async (date) => {
-    try {
-      // const start = new Date(date);
-      // start.setHours(0, 0, 0, 0);
-      // const end = new Date(date);
-      // end.setHours(23, 59, 59, 999);
-      const start = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0));
-    const end = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59, 999));
-
-      console.log(start.toISOString(),end.toISOString());
-      const response = await api.get('/home/tasks', {
-        params: {
-          start: start.toISOString(),
-          end: end.toISOString()
-        }
-      });
-
-      // 确保数据正确设置
-      setTodoList(response.data);
-    } catch (error) {
-      console.error('获取待办事项失败:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchTasksForDate(selectedDate);
-  }, [selectedDate]);
-
+  
+  // 修改后的待办事项数据结构，使用 start 和 end 字段
+  const todoList = [
+    {
+      id: '1',
+      title: '上課',
+      start: '2025-06-22 10:30',
+      end: '2025-06-22 12:00',
+      place: 'FJ701',
+      description: '准時上課',
+    },
+    {
+      id: '2',
+      title: '會議',
+      start: '2025-06-23 14:00',
+      end: '2025-06-23 15:30',
+      place: '會議室A',
+      description: '項目進度報告',
+    },
+    {
+      id: '3',
+      title: '健身房',
+      start: '2025-06-24 18:00',
+      end: '2025-06-24 19:30',
+      place: '健身中心',
+      description: '有氧運動',
+    },
+    {
+      id: '4',
+      title: '醫生預約',
+      start: '2025-06-25 09:00',
+      end: '2025-06-25 10:00',
+      place: '市立醫院',
+      description: '年度健康檢查',
+    },
+    {
+      id: '5',
+      title: '團隊聚餐',
+      start: '2025-06-26 19:00',
+      end: '2025-06-26 21:00',
+      place: '藍屋餐廳',
+      description: '歡迎新同事',
+    },
+    {
+      id: '6',
+      title: '線上課程',
+      start: '2025-06-27 20:00',
+      end: '2025-06-27 22:00',
+      place: 'Zoom會議',
+      description: 'React進階課程',
+    },
+    {
+      id: '7',
+      title: '家庭日',
+      start: '2025-06-28 00:00',
+      end: '2025-06-28 23:59',
+      place: '家裡',
+      description: '家庭聚會',
+    },
+  ];
+  
   // 格式化日期为 YYYY-MM-DD
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -51,18 +74,20 @@ function Home() {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-
-  // 格式化时间显示
+  
+  // 根据选中的日期过滤待办事项
+  const filteredTodoList = todoList.filter(todo => 
+    todo.start.startsWith(formatDate(selectedDate))
+  );
+  
+  // 格式化时间显示 (HH:mm)
   const formatTime = (dateTime) => {
-    const date = new Date(dateTime);
-    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return dateTime.split(' ')[1].substring(0, 5);
   };
-
-
+  
   // 处理日期变更的回调函数
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
-    fetchTasksForDate(newDate);
   };
 
   return (
@@ -79,30 +104,18 @@ function Home() {
         <div className="large-section">
           <div className="section-title">
             {formatDate(selectedDate)} 的待辦事項
-            <span className="todo-count">{todoList.length} 項</span>
+            <span className="todo-count">{filteredTodoList.length} 項</span>
           </div>
           <div className="large-section-item-area">
-            {loading ? (
-              <div className="loading-message">載入中...</div>
-            ) : todoList.length > 0 ? (
-              todoList.map((todo) => {
-                // 确保任务日期与选中日期匹配
-                const taskDate = new Date(todo.start);
-                const isSameDay = taskDate.getDate() === selectedDate.getDate() &&
-                  taskDate.getMonth() === selectedDate.getMonth() &&
-                  taskDate.getFullYear() === selectedDate.getFullYear();
-
-                if (!isSameDay) return null;
-
-                return (
-                  <div key={todo.id} className="large-section-item">
-                    <h1>{todo.title}</h1>
-                    <p>時間: {formatTime(todo.start)} - {formatTime(todo.end)}</p>
-                    <p>地點: {todo.place || '無地點信息'}</p>
-                    <p>備註: {todo.description || '無備註'}</p>
-                  </div>
-                );
-              })
+            {filteredTodoList.length > 0 ? (
+              filteredTodoList.map((todo) => (
+                <div key={todo.id} className="large-section-item">
+                  <h1>{todo.title}</h1>
+                  <p>時間: {formatTime(todo.start)} - {formatTime(todo.end)}</p>
+                  <p>地點: {todo.place}</p>
+                  <p>備註: {todo.description}</p>
+                </div>
+              ))
             ) : (
               <div className="no-todos-message">
                 這一天沒有待辦事項

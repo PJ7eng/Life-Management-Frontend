@@ -39,41 +39,15 @@ function Register() {
   }
 };
 
-  // return(
-  //   <div className= "register-page">
-  //     <h1>LifeCursor</h1>
-  //     <div className = "register-board">
-  //       <h2>註冊您的新賬號</h2>
-  //       <div className = 'inputs'>
-  //         <img src={userIcon} alt="user Icon"/>
-  //         <input type="Account" placeholder='請輸入賬號' onChange={(e) => setUsername(e.target.value)}/>
-  //       </div>
-  //       <div className = 'inputs'>
-  //         <img src={passwordIcon} alt="password Icon"/>
-  //         <input type="password" placeholder='請輸入密碼' onChange={(e) => setPassword(e.target.value)}/>
-  //       </div>
-  //       <div className = 'inputs'>
-  //         <img src={passwordIcon} alt="password Icon"/>
-  //         <input type="password" placeholder='請再輸入密碼' onChange={(e) => setConfirmPassword(e.target.value)}/>
-  //       </div>
-  //       <div className="submit-container">
-  //         <div className="submit" onClick={handleRegister}>註冊</div>
-  //         <div className='submit' onClick={() => navigate('/login')}>取消</div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-
   return (
   <div className="register-page">
     <h1>LifeCursor</h1>
     <div className="register-board">
       <h2>註冊您的新賬號</h2>
-      {error && <div className="error-message">{error}</div>} {/* 顯示錯誤訊息 */}
       <div className="inputs">
         <img src={userIcon} alt="user Icon" />
         <input
-          type="text" // 改為 type="text"，因為賬號通常不是 "Account"
+          type="text"
           placeholder="請輸入賬號"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -97,6 +71,7 @@ function Register() {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
+      {error && <div className="error-message">{error}</div>} {/* 顯示錯誤訊息 */}
       <div className="submit-container">
         <div className="submit" onClick={handleRegister}>
           註冊
